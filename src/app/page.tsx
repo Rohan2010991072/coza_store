@@ -4,33 +4,15 @@ import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from '@/types';
-import { Heart, ChevronLeft, ChevronRight, Search, Filter } from 'lucide-react';
+import { Heart, Search, Filter } from 'lucide-react';
+import { AnimatedSlider } from '@/components/ui/AnimatedSlider';
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [activeFilter, setActiveFilter] = useState<string>('Women');
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [displayCount, setDisplayCount] = useState(8);
-
-  const slides = [
-    {
-      image: '/images/slide-01.jpg',
-      title: 'Women Collection 2025',
-      subtitle: 'New arrivals'
-    },
-    {
-      image: '/images/slide-02.jpg', 
-      title: 'Men Collection 2025',
-      subtitle: 'Spring Collection'
-    },
-    {
-      image: '/images/slide-03.jpg',
-      title: 'Accessories',
-      subtitle: 'Now Trend'
-    }
-  ];
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -68,52 +50,12 @@ export default function Home() {
     setFilteredProducts(filtered.slice(0, displayCount));
   }, [products, activeFilter, searchTerm, displayCount]);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Slider Section */}
-      <section className="relative h-screen overflow-hidden group">
-        <div className="relative h-full">
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-500 ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
-              <Image
-                src={slide.image}
-                alt={slide.title}
-                fill
-                className="object-cover"
-                priority={index === 0}
-              />
-              <div className="absolute inset-0 bg-black/20"></div>
-            </div>
-          ))}
-        </div>
-
-        {/* Navigation Arrows - Hidden by default, visible on hover */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
-        >
-          <ChevronLeft className="h-6 w-6 text-gray-800" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
-        >
-          <ChevronRight className="h-6 w-6 text-gray-800" />
-        </button>
-      </section>
+      <AnimatedSlider />
 
       {/* Category Section */}
       <section className="py-16 bg-gray-50">
