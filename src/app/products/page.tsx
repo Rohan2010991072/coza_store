@@ -79,8 +79,8 @@ export default function ProductsPage() {
     // Search filter
     if (filters.search) {
       filtered = filtered.filter(product =>
-        product.name.toLowerCase().includes(filters.search.toLowerCase()) ||
-        product.description.toLowerCase().includes(filters.search.toLowerCase())
+        product.name?.toLowerCase().includes(filters.search.toLowerCase()) ||
+        product.description?.toLowerCase().includes(filters.search.toLowerCase())
       );
     }
 
@@ -102,16 +102,16 @@ export default function ProductsPage() {
     // Color filter (based on product name/description)
     if (filters.color !== 'all') {
       filtered = filtered.filter(product =>
-        product.name.toLowerCase().includes(filters.color.toLowerCase()) ||
-        product.description.toLowerCase().includes(filters.color.toLowerCase())
+        product.name?.toLowerCase().includes(filters.color.toLowerCase()) ||
+        product.description?.toLowerCase().includes(filters.color.toLowerCase())
       );
     }
 
     // Tags filter (based on product description/brand)
     if (filters.tags !== 'all') {
       filtered = filtered.filter(product =>
-        product.description.toLowerCase().includes(filters.tags.toLowerCase()) ||
-        product.brand.toLowerCase().includes(filters.tags.toLowerCase())
+        product.description?.toLowerCase().includes(filters.tags.toLowerCase()) ||
+        product.brand?.toLowerCase().includes(filters.tags.toLowerCase())
       );
     }
 
@@ -146,7 +146,7 @@ export default function ProductsPage() {
       try {
         // Filter from existing products for autocomplete
         const suggestions = products.filter(product =>
-          product.name.toLowerCase().includes(value.toLowerCase())
+          product.name?.toLowerCase().includes(value.toLowerCase())
         ).slice(0, 5);
         setSearchSuggestions(suggestions);
         setShowSuggestions(true);
