@@ -78,7 +78,7 @@ const CartSidebar = () => {
                   <div key={`${item.id}-${item.size}-${item.color}`} className="flex items-center space-x-4">
                     <div className="relative w-16 h-16 bg-gray-100 rounded-lg overflow-hidden">
                       <Image
-                        src={item.image}
+                        src={item.image.startsWith('/') ? item.image : `/${item.image}`}
                         alt={item.name}
                         fill
                         className="object-cover"
@@ -89,7 +89,7 @@ const CartSidebar = () => {
                       <h4 className="text-sm font-medium text-gray-900 truncate">
                         {item.name}
                       </h4>
-                      <p className="text-sm text-gray-500">${item.price}</p>
+                      <p className="text-sm text-gray-500">N{item.price.toLocaleString()}</p>
                       {item.size && <p className="text-xs text-gray-400">Size: {item.size}</p>}
                       {item.color && <p className="text-xs text-gray-400">Color: {item.color}</p>}
                       
@@ -121,7 +121,7 @@ const CartSidebar = () => {
                         <X className="h-4 w-4" />
                       </button>
                       <p className="text-sm font-medium text-gray-900">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        N{(item.price * item.quantity).toLocaleString()}
                       </p>
                     </div>
                   </div>
@@ -146,7 +146,7 @@ const CartSidebar = () => {
               <div className="flex justify-between items-center mb-4">
                 <span className="text-lg font-semibold text-gray-900">Total:</span>
                 <span className="text-lg font-semibold text-gray-900">
-                  ${total.toFixed(2)}
+                  N{total.toLocaleString()}
                 </span>
               </div>
               

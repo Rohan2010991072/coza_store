@@ -250,7 +250,7 @@ export default function ProductsPage() {
                       <div className="flex items-center space-x-3">
                         <div className="relative w-12 h-12">
                           <Image
-                            src={`/${product.image}`}
+                            src={product.image.startsWith('/') ? product.image : `/${product.image}`}
                             alt={product.name}
                             fill
                             className="object-cover"
@@ -402,7 +402,7 @@ export default function ProductsPage() {
             <div key={product._id.$oid} className="group bg-white">
               <div className="relative overflow-hidden aspect-square mb-4">
                 <Image
-                  src={`/${product.image}`}
+                  src={product.image.startsWith('/') ? product.image : `/${product.image}`}
                   alt={product.name}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"

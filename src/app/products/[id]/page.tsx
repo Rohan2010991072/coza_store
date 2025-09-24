@@ -136,7 +136,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
             {/* Main Image */}
             <div className="aspect-square overflow-hidden bg-gray-100">
               <Image
-                src={`/${images[selectedImage]}`}
+                src={images[selectedImage].startsWith('/') ? images[selectedImage] : `/${images[selectedImage]}`}
                 alt={product.name}
                 width={600}
                 height={600}
@@ -156,7 +156,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                     }`}
                   >
                     <Image
-                      src={`/${image}`}
+                      src={image.startsWith('/') ? image : `/${image}`}
                       alt={`${product.name} ${index + 1}`}
                       width={80}
                       height={80}

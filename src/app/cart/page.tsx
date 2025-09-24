@@ -76,7 +76,7 @@ const CartPage = () => {
                     <div key={`${item.id}-${item.size}-${item.color}`} className="flex items-center space-x-4 pb-6 border-b border-gray-200 last:border-b-0">
                       <div className="relative w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
                         <Image
-                          src={item.image}
+                          src={item.image.startsWith('/') ? item.image : `/${item.image}`}
                           alt={item.name}
                           fill
                           className="object-cover"
