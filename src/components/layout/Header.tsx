@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import { openCart } from '@/store/slices/cartSlice';
 import { logout } from '@/store/slices/userSlice';
-import { ShoppingBag, Search, Menu, X, User, UserCircle, LogOut, Settings } from 'lucide-react';
+import { ShoppingBag, Search, Menu, X, UserCircle, LogOut, Settings } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,6 +35,7 @@ const Header = () => {
 
   const navigation = [
     { name: 'Home', href: '/' },
+    { name: 'Products', href: '/products' },
     { name: 'Blog', href: '/blog' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
