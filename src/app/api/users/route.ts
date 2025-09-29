@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
       lastName,
       username,
       email,
-      password, 
+      password, // In production, this should be hashed
       phone,
       dateOfBirth,
       gender,
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
       preferences: preferences || {
         newsletter: false,
         smsNotifications: false,
-        emailNotifications: true
+        emailNotifications: false
       },
       isAdmin: false,
       isVerified: false
