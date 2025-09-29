@@ -237,6 +237,7 @@ class DataService {
         // Update last login
         this.updateUser(user._id, { lastLogin: new Date() });
         // Return user without password
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { password: _, ...userWithoutPassword } = user;
         return userWithoutPassword as User;
       }

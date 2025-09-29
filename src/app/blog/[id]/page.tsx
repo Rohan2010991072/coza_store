@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from "next/image";
 import Link from "next/link";
-import { Search, ChevronRight, User, Mail, Globe } from 'lucide-react';
+import { ChevronRight, Search, User } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
 const BlogDetailPage = () => {

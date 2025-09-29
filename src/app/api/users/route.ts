@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
       lastName,
       username,
       email,
-      password, // In production, this should be hashed
+      password, 
       phone,
       dateOfBirth,
       gender,
@@ -69,6 +69,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Remove password from response
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userWithoutPassword } = user;
 
     return NextResponse.json({
@@ -77,10 +78,10 @@ export async function POST(request: NextRequest) {
       message: 'User account created successfully'
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error creating user:', error);
     
-    if (error.message === 'User with this email already exists') {
+    if (error instanceof Error && error.message === 'User with this email already exists') {
       return NextResponse.json(
         { success: false, error: error.message },
         { status: 409 }
@@ -100,6 +101,7 @@ export async function GET() {
     
     // Remove passwords from response
     const usersWithoutPasswords = users.map(user => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, ...userWithoutPassword } = user;
       return userWithoutPassword;
     });
